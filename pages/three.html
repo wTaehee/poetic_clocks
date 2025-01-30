@@ -27,13 +27,13 @@
 
     .clocks-container {
       display: flex;
-      gap: 80px; /* Space between clocks */
+      gap: 50px; /* Space between clocks */
     }
 
     .clock {
       position: relative;
-      width: 500px;
-      height: 500px;
+      width: 450px;
+      height: 450px;
       border: 1px solid #333;
       border-radius: 50%;
       background-color: #e5e0d5;
@@ -107,7 +107,7 @@
   </style>
 </head>
 <body>
-    <a href="./three.html"><button>→</button></a>
+    <a href="../index.html"><button>→</button></a>
   <div class="clocks-container">
     <!-- First Clock (Normal Time) -->
     <div class="clock" id="leftClock">
@@ -131,27 +131,49 @@
       <div class="number number12">Miss you</div>
     </div>
 
-    <!-- Second Clock (10 Seconds Behind) -->
-    <div class="clock" id="rightClock">
+    <!-- Second Clock -->
+    <div class="clock" id="centerClock">
       <div class="hand hour-hand"></div>
       <div class="hand minute-hand"></div>
       <div class="hand second-hand"></div>
       <div class="center-circle"></div>
 
       <!-- Clock Numbers -->
-      <div class="number number1">Miss you</div>
-      <div class="number number2">See you</div>
-      <div class="number number3">Miss you</div>
-      <div class="number number4">See you</div>
-      <div class="number number5">Miss you</div>
-      <div class="number number6">See you</div>
-      <div class="number number7">Miss you</div>
-      <div class="number number8">See you</div>
-      <div class="number number9">Miss you</div>
-      <div class="number number10">See you</div>
-      <div class="number number11">Miss you</div>
-      <div class="number number12">See you</div>
+      <div class="number number1">always</div>
+      <div class="number number2">always</div>
+      <div class="number number3">always</div>
+      <div class="number number4">always</div>
+      <div class="number number5">always</div>
+      <div class="number number6">always</div>
+      <div class="number number7">always</div>
+      <div class="number number8">always</div>
+      <div class="number number9">always</div>
+      <div class="number number10">always</div>
+      <div class="number number11">always</div>
+      <div class="number number12">always</div>
     </div>
+
+    <!-- thrid Clock-->
+    <div class="clock" id="rightClock">
+        <div class="hand hour-hand"></div>
+        <div class="hand minute-hand"></div>
+        <div class="hand second-hand"></div>
+        <div class="center-circle"></div>
+  
+        <!-- Clock Numbers -->
+        <div class="number number1">everywhere</div>
+        <div class="number number2">everywhere</div>
+        <div class="number number3">everywhere</div>
+        <div class="number number4">everywhere</div>
+        <div class="number number5">everywhere</div>
+        <div class="number number6">everywhere</div>
+        <div class="number number7">everywhere</div>
+        <div class="number number8">everywhere</div>
+        <div class="number number9">everywhere</div>
+        <div class="number number10">everywhere</div>
+        <div class="number number11">everywhere</div>
+        <div class="number number12">everywhere</div>
+      </div>
   </div>
 
   <script>
@@ -177,11 +199,13 @@
     }
 
     const leftClock = document.getElementById("leftClock");
+    const centerClock = document.getElementById("centerClock");
     const rightClock = document.getElementById("rightClock");
 
     function updateAllClocks() {
-      updateClock(leftClock); // Normal time
-      updateClock(rightClock, 2); // 2 seconds behind
+      updateClock(leftClock, -2); // 
+      updateClock(centerClock); // 
+      updateClock(rightClock, 2); // 
     }
 
     setInterval(updateAllClocks, 1000);
