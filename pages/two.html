@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thoughts & Prayers</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #e5e0d5;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 8px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+    .clocks-container {
+      display: flex;
+      gap: 80px; /* Space between clocks */
+    }
+
+    .clock {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      border: 1px solid #333;
+      border-radius: 50%;
+      background-color: #e5e0d5;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .hand {
+      position: absolute;
+      width: 40%;
+      height: 4px;
+      background-color: #333;
+      top: 50%;
+      left: 50%;
+      transform-origin: 0% 50%;
+      transform: rotate(90deg);
+      transition: transform 0.05s cubic-bezier(0.4, 2.3, 0.6, 1);
+    }
+
+    .hour-hand {
+      width: 30%;
+      height: 1.5px;
+      background-color: #000;
+    }
+
+    .minute-hand {
+      width: 40%;
+      height: 1px;
+      background-color: #666;
+    }
+
+    .second-hand {
+      width: 45%;
+      height: 0.5px;
+      background-color: #f00;
+    }
+
+    .center-circle {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background-color: #333;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .number {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      font-size: 16px;
+      font-weight: thin;
+      color: #333;
+    }
+
+    /* Positioning the numbers */
+    .number1 { transform: rotate(30deg) translateY(10px); }
+    .number2 { transform: rotate(60deg) translateY(10px); }
+    .number3 { transform: rotate(90deg) translateY(10px); }
+    .number4 { transform: rotate(120deg) translateY(10px); }
+    .number5 { transform: rotate(150deg) translateY(10px); }
+    .number6 { transform: rotate(180deg) translateY(10px); }
+    .number7 { transform: rotate(210deg) translateY(10px); }
+    .number8 { transform: rotate(240deg) translateY(10px); }
+    .number9 { transform: rotate(270deg) translateY(10px); }
+    .number10 { transform: rotate(300deg) translateY(10px); }
+    .number11 { transform: rotate(330deg) translateY(10px); }
+    .number12 { transform: rotate(360deg) translateY(10px); }
+  </style>
+</head>
+<body>
+    <a href="../index.html"><button>→</button></a>
+  <div class="clocks-container">
+    <!-- First Clock (Normal Time) -->
+    <div class="clock" id="leftClock">
+      <div class="hand hour-hand"></div>
+      <div class="hand minute-hand"></div>
+      <div class="hand second-hand"></div>
+      <div class="center-circle"></div>
+
+      <!-- Clock Numbers -->
+      <div class="number number1">thought</div>
+      <div class="number number2">prayer</div>
+      <div class="number number3">thought</div>
+      <div class="number number4">prayer</div>
+      <div class="number number5">thought</div>
+      <div class="number number6">prayer</div>
+      <div class="number number7">thought</div>
+      <div class="number number8">prayer</div>
+      <div class="number number9">thought</div>
+      <div class="number number10">prayer</div>
+      <div class="number number11">thought</div>
+      <div class="number number12">prayer</div>
+    </div>
+
+    <!-- Second Clock (10 Seconds Behind) -->
+    <div class="clock" id="rightClock">
+      <div class="hand hour-hand"></div>
+      <div class="hand minute-hand"></div>
+      <div class="hand second-hand"></div>
+      <div class="center-circle"></div>
+
+      <!-- Clock Numbers -->
+      <div class="number number1">thought</div>
+      <div class="number number2">prayer</div>
+      <div class="number number3">thought</div>
+      <div class="number number4">prayer</div>
+      <div class="number number5">thought</div>
+      <div class="number number6">prayer</div>
+      <div class="number number7">thought</div>
+      <div class="number number8">prayer</div>
+      <div class="number number9">thought</div>
+      <div class="number number10">prayer</div>
+      <div class="number number11">thought</div>
+      <div class="number number12">prayer</div>
+    </div>
+  </div>
+
+  <script>
+    function updateClock(clockElement, timeOffset = 0) {
+      const hourHand = clockElement.querySelector('.hour-hand');
+      const minuteHand = clockElement.querySelector('.minute-hand');
+      const secondHand = clockElement.querySelector('.second-hand');
+
+      const now = new Date();
+      now.setSeconds(now.getSeconds() - timeOffset); // Subtract timeOffset (10 seconds for the right clock)
+
+      const seconds = now.getSeconds();
+      const minutes = now.getMinutes();
+      const hours = now.getHours();
+
+      const secondsDegrees = ((seconds / 60) * 360) - 90;
+      const minutesDegrees = ((minutes / 60) * 360) - 90 + ((seconds / 60) * 6);
+      const hoursDegrees = ((hours % 12) / 12) * 360 - 90 + ((minutes / 60) * 30);
+
+      secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+      minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+      hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+    }
+
+    const leftClock = document.getElementById("leftClock");
+    const rightClock = document.getElementById("rightClock");
+
+    function updateAllClocks() {
+      updateClock(leftClock); // Normal time
+      updateClock(rightClock, 2); // 2 seconds behind
+    }
+
+    setInterval(updateAllClocks, 1000);
+    updateAllClocks();
+  </script>
+</body>
+</html>
