@@ -25,15 +25,18 @@
     z-index: 10;
 }
 
-    .clock {
-      position: relative;
-      width: 550px;
-      height: 550px;
-      border: 2px solid #333;
-      border-radius: 50%;
-      background-color: #e5e0d5;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    }
+.clock {
+  position: relative;
+  width: 80vw; /* Adjust width dynamically */
+  max-width: 550px; /* Prevent it from growing too large */
+  height: auto; /* Adjust height automatically */
+  aspect-ratio: 1 / 1; /* Maintain circular shape */
+  border: 2px solid #333;
+  border-radius: 50%;
+  background-color: #e5e0d5;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
 
     .hand {
       position: absolute;
